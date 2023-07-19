@@ -148,7 +148,7 @@ public class MyArrayList<E> implements List<E> {
 
     @Override
     public void add(int index, E element) {
-        if(index < 0 || index > arr.length) {
+        if(index < 0 || index >= arr.length) {
             throw new IndexOutOfBoundsException();
         }
         if (arr[index] != null) {
