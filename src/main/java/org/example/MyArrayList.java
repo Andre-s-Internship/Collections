@@ -11,6 +11,11 @@ public class MyArrayList<E> implements List<E> {
         size = 0;
     }
 
+    public MyArrayList(int capacity) {
+        arr = (E[]) new Object[capacity];
+        size = 0;
+    }
+
 
     @Override
     public int size() {
