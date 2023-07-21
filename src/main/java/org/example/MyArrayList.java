@@ -205,7 +205,14 @@ public class MyArrayList<E> implements List<E> {
 
     @Override
     public List<E> subList(int fromIndex, int toIndex) {
-        return null;
+        if (fromIndex < 0 || toIndex > size || fromIndex > toIndex) {
+            throw new IndexOutOfBoundsException();
+        }
+        MyArrayList<E> list = new MyArrayList<>();
+        for(int i = fromIndex; i < toIndex; i++) {
+            list.add(get(i));
+        }
+        return list;
     }
 
     private void resize() {
