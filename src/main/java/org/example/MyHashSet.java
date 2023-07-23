@@ -6,22 +6,14 @@ import java.util.Set;
 
 public class MyHashSet<E> implements Set<E> {
 
-    private MyArrayList<MyLinkedList<E>> hashtable;
-    private final int CAPACITY = 10;
-    private int size;
-
-    public MyHashSet() {
-        hashtable = new MyArrayList<MyLinkedList<E>>(CAPACITY);
-        size = 0;
-    }
     @Override
     public int size() {
-        return size;
+        return 0;
     }
 
     @Override
     public boolean isEmpty() {
-        return size == 0;
+        return false;
     }
 
     @Override
@@ -30,7 +22,7 @@ public class MyHashSet<E> implements Set<E> {
     }
 
     @Override
-    public Iterator iterator() {
+    public Iterator<E> iterator() {
         return null;
     }
 
@@ -40,11 +32,12 @@ public class MyHashSet<E> implements Set<E> {
     }
 
     @Override
-    public boolean add(Object o) {
-        if(contains(o)) return false;
+    public <T> T[] toArray(T[] a) {
+        return null;
+    }
 
-        int hash = o.hashCode();
-        int index = Math.abs((hash) % CAPACITY);
+    @Override
+    public boolean add(E e) {
         return false;
     }
 
@@ -54,32 +47,27 @@ public class MyHashSet<E> implements Set<E> {
     }
 
     @Override
-    public boolean addAll(Collection c) {
+    public boolean containsAll(Collection<?> c) {
+        return false;
+    }
+
+    @Override
+    public boolean addAll(Collection<? extends E> c) {
+        return false;
+    }
+
+    @Override
+    public boolean retainAll(Collection<?> c) {
+        return false;
+    }
+
+    @Override
+    public boolean removeAll(Collection<?> c) {
         return false;
     }
 
     @Override
     public void clear() {
 
-    }
-
-    @Override
-    public boolean removeAll(Collection c) {
-        return false;
-    }
-
-    @Override
-    public boolean retainAll(Collection c) {
-        return false;
-    }
-
-    @Override
-    public boolean containsAll(Collection c) {
-        return false;
-    }
-
-    @Override
-    public Object[] toArray(Object[] a) {
-        return new Object[0];
     }
 }

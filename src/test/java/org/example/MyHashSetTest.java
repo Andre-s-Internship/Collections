@@ -2,13 +2,11 @@ package org.example;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.HashMap;
 import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MyHashSetTest {
+public class MyHashSetTest {
 
     MyHashSet<String> createMyHashSet(){
         MyHashSet<String> myHashSet = new MyHashSet<>();
@@ -19,14 +17,12 @@ class MyHashSetTest {
     }
 
     HashSet<String> createHashSet(){
-        HashSet<String> hashSet = new HashSet<>();
+        HashSet<String> hashSet = new HashSet<>(10);
         hashSet.add("Java");
         hashSet.add("is");
         hashSet.add("fun");
         return hashSet;
     }
-
-
 
     @Test
     @DisplayName("Test for size 1")
@@ -107,7 +103,8 @@ class MyHashSetTest {
         HashSet<String> hashSet = createHashSet();
         assertTrue(myHashSet.add("Python"));
         assertTrue(hashSet.add("Python"));
-        assertArrayEquals(hashSet.toArray(), myHashSet.toArray());
+        assertTrue(myHashSet.contains("Python"));
+        assertTrue(hashSet.contains("Python"));
     }
 
 
@@ -138,9 +135,9 @@ class MyHashSetTest {
         MyHashSet<String> myHashSet = createMyHashSet();
         HashSet<String> hashSet = createHashSet();
         HashSet<String> hashSet1 = createHashSet();
-        assertTrue(myHashSet.addAll(hashSet1));
-        assertTrue(hashSet.addAll(hashSet1));
-        assertArrayEquals(hashSet.toArray(), myHashSet.toArray());
+        assertFalse(myHashSet.addAll(hashSet1));
+        assertFalse(hashSet.addAll(hashSet1));
+        assertTrue(hashSet.equals(myHashSet));
     }
 
 
@@ -218,10 +215,5 @@ class MyHashSetTest {
         assertFalse(myHashSet.containsAll(hashSet1));
         assertFalse(hashSet.containsAll(hashSet1));
     }
-
-
-
-
-
 
 }
