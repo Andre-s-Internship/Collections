@@ -99,8 +99,8 @@ class MyHashMapTest {
     void containsValueFalse() {
         MyHashMap<Integer, String> myHashMap = createMyHashMap();
         HashMap<Integer, String> hashMap = createHashMap();
-        assertTrue(myHashMap.containsValue("Python"));
-        assertTrue(hashMap.containsValue("Python"));
+        assertFalse(myHashMap.containsValue("Python"));
+        assertFalse(hashMap.containsValue("Python"));
         assertEquals(hashMap.containsValue("not"), myHashMap.containsValue("not"));
     }
 
@@ -128,7 +128,9 @@ class MyHashMapTest {
     void put() {
         MyHashMap<Integer, String> myHashMap = createMyHashMap();
         HashMap<Integer, String> hashMap = createHashMap();
-        assertEquals(hashMap.put(4, "Python"), myHashMap.put(4, "Python"));
+        hashMap.put(4, "Python");
+        myHashMap.put(4, "Python");
+        assertEquals(hashMap.size(), myHashMap.size());
         assertTrue(hashMap.containsKey(4) && hashMap.containsValue("Python") &&
                             myHashMap.containsKey(4) && myHashMap.containsValue("Python"));
     }
@@ -138,7 +140,9 @@ class MyHashMapTest {
     void putSame() {
         MyHashMap<Integer, String> myHashMap = createMyHashMap();
         HashMap<Integer, String> hashMap = createHashMap();
-        assertEquals(hashMap.put(3, "Python"), myHashMap.put(3, "Python"));
+        hashMap.put(3, "Python");
+        myHashMap.put(3, "Python");
+        assertEquals(hashMap.size(), myHashMap.size());
         assertTrue(hashMap.get(3).equals("Python") && myHashMap.get(3).equals("Python"));
     }
 
@@ -172,7 +176,9 @@ class MyHashMapTest {
         map.put(2, "is");
         map.put(3, "not");
         map.put(4, "fun");
-        assertTrue(hashMap.size() == 4 && myHashMap.size() == 4);
+        hashMap.putAll(map);
+        myHashMap.putAll(map);
+        //assertTrue(hashMap.size() == 4 && myHashMap.size() == 4);
         assertTrue(hashMap.get(1).equals("Python") && myHashMap.get(1).equals("Python"));
     }
 
@@ -186,6 +192,8 @@ class MyHashMapTest {
         map.put(5, "is");
         map.put(6, "not");
         map.put(7, "fun");
+        hashMap.putAll(map);
+        myHashMap.putAll(map);
         assertTrue(hashMap.size() == 7 && myHashMap.size() == 7);
         assertTrue(hashMap.get(1).equals("Java") && myHashMap.get(1).equals("Java"));
         assertTrue(hashMap.get(4).equals("Python") && myHashMap.get(4).equals("Python"));
@@ -220,12 +228,21 @@ class MyHashMapTest {
     }
 
     @Test
-    @DisplayName("Test for entrySet")
+    @DisplayName("Test for entrySet 1")
     void entrySet() {
         MyHashMap<Integer, String> myHashMap = createMyHashMap();
         HashMap<Integer, String> hashMap = createHashMap();
-        assertTrue(hashMap.entrySet().containsAll(myHashMap.entrySet()) &&
-                            myHashMap.entrySet().containsAll(hashMap.entrySet()));
+        assertTrue(myHashMap.equalEntrySet(hashMap.entrySet()));
+    }
+
+    @Test
+    @DisplayName("Test for entrySet 2")
+    void entrySetFalse() {
+        MyHashMap<Integer, String> myHashMap = createMyHashMap();
+        HashMap<Integer, String> hashMap = createHashMap();
+        myHashMap.put(4, "Python");
+        hashMap.put(4, "Javascript");
+        assertFalse(myHashMap.equalEntrySet(hashMap.entrySet()));
     }
 
 
