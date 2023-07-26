@@ -302,7 +302,7 @@ public class MyLinkedList<E> implements List<E> {
         return list;
     }
 
-    private void addFirst(E e) {
+    void addFirst(E e) {
         Node<E> temp = head;
         Node<E> newNode = new Node<>(null, e, temp);
         if(isEmpty()) {
@@ -313,7 +313,7 @@ public class MyLinkedList<E> implements List<E> {
         size++;
     }
 
-    private void addLast(E element) {
+    void addLast(E element) {
         Node<E> newNode = new Node<>(tail, element, null);
         if (isEmpty()) {
             addFirst(element);

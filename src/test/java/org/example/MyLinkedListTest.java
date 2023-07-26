@@ -219,10 +219,6 @@ class MyLinkedListTest {
         MyLinkedList<String> myLinkedList = createMyLinkedList();
         assertTrue(myLinkedList.addAll(linkedList));
         assertTrue(linkedList1.addAll(linkedList));
-        System.out.println(myLinkedList.size());
-        for(Object o : myLinkedList) {
-            System.out.println(o.toString());
-        }
         assertArrayEquals(linkedList1.toArray(), myLinkedList.toArray());
     }
 
@@ -274,7 +270,6 @@ class MyLinkedListTest {
         assertEquals("Java", myLinkedList.get(0));
         assertEquals("is", myLinkedList.get(1));
         assertEquals("fun", myLinkedList.get(2));
-        System.out.println(myLinkedList.size());
         assertThrows(IndexOutOfBoundsException.class, () -> myLinkedList.get(3));
 
     }

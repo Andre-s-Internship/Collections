@@ -2,7 +2,12 @@ package org.example;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -77,16 +82,20 @@ public class MyHashSetTest {
     @DisplayName("Test for toArray 1")
     void toArray1() {
         MyHashSet<String> myHashSet = createMyHashSet();
-        String[] strings = {"Java", "is", "fun"};
-        assertArrayEquals(strings, myHashSet.toArray());
+        HashSet<String> hashSet = createHashSet();
+        Object[] myArr =  myHashSet.toArray();
+        Object[] arr = hashSet.toArray();
+        Arrays.sort(myArr);
+        Arrays.sort(arr);
+        assertArrayEquals(arr, myArr);
     }
 
     @Test
-    @DisplayName("Test for toArray 2")
+    @DisplayName("Test for toArray")
     void toArray2() {
         MyHashSet<String> myHashSet = createMyHashSet();
         HashSet<String> hashSet = createHashSet();
-        assertArrayEquals(hashSet.toArray(), myHashSet.toArray());
+        assertTrue(myHashSet.equalSets(hashSet));
     }
 
     @Test
@@ -103,6 +112,7 @@ public class MyHashSetTest {
         HashSet<String> hashSet = createHashSet();
         assertTrue(myHashSet.add("Python"));
         assertTrue(hashSet.add("Python"));
+        assertTrue(myHashSet.equalSets(hashSet));
         assertTrue(myHashSet.contains("Python"));
         assertTrue(hashSet.contains("Python"));
     }
@@ -115,7 +125,7 @@ public class MyHashSetTest {
         HashSet<String> hashSet = createHashSet();
         assertTrue(myHashSet.remove("Java"));
         assertTrue(hashSet.remove("Java"));
-        assertArrayEquals(hashSet.toArray(), myHashSet.toArray());
+        assertTrue(myHashSet.equalSets(hashSet));
     }
 
     @Test
@@ -125,7 +135,7 @@ public class MyHashSetTest {
         HashSet<String> hashSet = createHashSet();
         assertFalse(myHashSet.remove("Python"));
         assertFalse(hashSet.remove("Python"));
-        assertArrayEquals(hashSet.toArray(), myHashSet.toArray());
+        assertTrue(myHashSet.equalSets(hashSet));
     }
 
 
@@ -137,6 +147,7 @@ public class MyHashSetTest {
         HashSet<String> hashSet1 = createHashSet();
         assertFalse(myHashSet.addAll(hashSet1));
         assertFalse(hashSet.addAll(hashSet1));
+        assertTrue(myHashSet.equalSets(hashSet));
         assertTrue(hashSet.equals(myHashSet));
     }
 
@@ -147,9 +158,9 @@ public class MyHashSetTest {
         MyHashSet<String> myHashSet = createMyHashSet();
         HashSet<String> hashSet = createHashSet();
         HashSet<String> hashSet1 = new HashSet<>();
-        assertTrue(myHashSet.addAll(hashSet1));
-        assertTrue(hashSet.addAll(hashSet1));
-        assertArrayEquals(hashSet.toArray(), myHashSet.toArray());
+        assertFalse(myHashSet.addAll(hashSet1));
+        assertFalse(hashSet.addAll(hashSet1));
+        assertTrue(myHashSet.equalSets(hashSet));
     }
 
 
@@ -162,7 +173,6 @@ public class MyHashSetTest {
         hashSet.clear();
         assertEquals(0, myHashSet.size());
         assertEquals(0, hashSet.size());
-        assertArrayEquals(hashSet.toArray(), myHashSet.toArray());
     }
 
 
@@ -175,7 +185,7 @@ public class MyHashSetTest {
         HashSet<String> hashSet1 = createHashSet();
         assertTrue(myHashSet.removeAll(hashSet1));
         assertTrue(hashSet.removeAll(hashSet1));
-        assertArrayEquals(hashSet.toArray(), myHashSet.toArray());
+        assertTrue(myHashSet.equalSets(hashSet));
     }
 
     @Test
@@ -188,7 +198,7 @@ public class MyHashSetTest {
         hashSet1.add("fun");
         assertTrue(myHashSet.removeAll(hashSet1));
         assertTrue(hashSet.removeAll(hashSet1));
-        assertArrayEquals(hashSet.toArray(), myHashSet.toArray());
+        assertTrue(myHashSet.equalSets(hashSet));
     }
 
 
