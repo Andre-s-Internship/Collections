@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MyHashSetTest {
+public class MyHashSetTest {
 
     MyHashSet<String> createMyHashSet(){
         MyHashSet<String> myHashSet = new MyHashSet<>();
@@ -22,14 +22,12 @@ class MyHashSetTest {
     }
 
     HashSet<String> createHashSet(){
-        HashSet<String> hashSet = new HashSet<>();
+        HashSet<String> hashSet = new HashSet<>(10);
         hashSet.add("Java");
         hashSet.add("is");
         hashSet.add("fun");
         return hashSet;
     }
-
-
 
     @Test
     @DisplayName("Test for size 1")
@@ -115,6 +113,8 @@ class MyHashSetTest {
         assertTrue(myHashSet.add("Python"));
         assertTrue(hashSet.add("Python"));
         assertTrue(myHashSet.equalSets(hashSet));
+        assertTrue(myHashSet.contains("Python"));
+        assertTrue(hashSet.contains("Python"));
     }
 
 
@@ -148,6 +148,7 @@ class MyHashSetTest {
         assertFalse(myHashSet.addAll(hashSet1));
         assertFalse(hashSet.addAll(hashSet1));
         assertTrue(myHashSet.equalSets(hashSet));
+        assertTrue(hashSet.equals(myHashSet));
     }
 
 
@@ -224,10 +225,5 @@ class MyHashSetTest {
         assertFalse(myHashSet.containsAll(hashSet1));
         assertFalse(hashSet.containsAll(hashSet1));
     }
-
-
-
-
-
 
 }
