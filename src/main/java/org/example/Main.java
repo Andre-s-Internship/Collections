@@ -5,13 +5,18 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        HashMap<Integer, String> hashMap = new HashMap<>();
-        hashMap.put(1, "Java");
-        hashMap.put(2, "is");
-        hashMap.put(3, "fun");
-        hashMap.put(3, "Python");
-        System.out.println(hashMap.entrySet().getClass());
-
+            MyTreeMap<Integer, String> myTreeMap = new MyTreeMap<>();
+            myTreeMap.put(1, "Java");
+            myTreeMap.put(2, "is");
+            myTreeMap.put(3, "fun");
+            TreeMap<Integer, String> treeMap = new TreeMap<>();
+            treeMap.put(1, "Java");
+            treeMap.put(2, "is");
+            treeMap.put(3, "fun");
+        System.out.println(treeMap.entrySet());
+        for(MyTreeMap.Entry<Integer, String> entry: myTreeMap.entries) {
+            System.out.println(entry.getKey() + "=" + entry.getValue());
+        }
     }
 }
 
