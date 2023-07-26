@@ -6,22 +6,14 @@ import java.util.Set;
 
 public class MyHashSet<E> implements Set<E> {
 
-    private MyArrayList<MyLinkedList<E>> hashtable;
-    private final int CAPACITY = 10;
-    private int size;
-
-    public MyHashSet() {
-        hashtable = new MyArrayList<MyLinkedList<E>>(CAPACITY);
-        size = 0;
-    }
     @Override
     public int size() {
-        return size;
+        return 0;
     }
 
     @Override
     public boolean isEmpty() {
-        return size == 0;
+        return false;
     }
 
     @Override
@@ -36,6 +28,7 @@ public class MyHashSet<E> implements Set<E> {
     @Override
     public Iterator<E> iterator() {
         return new MySetIterator<>();
+        return null;
     }
 
     @Override
@@ -101,10 +94,32 @@ public class MyHashSet<E> implements Set<E> {
             if(!remove(element)) return false;
         }
         return true;
+    public <T> T[] toArray(T[] a) {
+        return null;
     }
 
     @Override
-    public boolean retainAll(Collection c) {
+    public boolean add(E e) {
+        return false;
+    }
+
+    @Override
+    public boolean remove(Object o) {
+        return false;
+    }
+
+    @Override
+    public boolean containsAll(Collection<?> c) {
+        return false;
+    }
+
+    @Override
+    public boolean addAll(Collection<? extends E> c) {
+        return false;
+    }
+
+    @Override
+    public boolean retainAll(Collection<?> c) {
         return false;
     }
 
@@ -114,12 +129,16 @@ public class MyHashSet<E> implements Set<E> {
             if(!contains(element)) return false;
         }
         return true;
+    public boolean removeAll(Collection<?> c) {
+        return false;
+
     }
 
     @Override
-    public Object[] toArray(Object[] a) {
-        return new Object[0];
+    public void clear() {
+
     }
+
 
     boolean equalSets(Set<E> HashSet) {
         return containsAll(HashSet) && HashSet.containsAll(this);
@@ -159,4 +178,6 @@ public class MyHashSet<E> implements Set<E> {
             }
         }
     }
+}
+
 }
